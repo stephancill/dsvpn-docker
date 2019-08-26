@@ -8,6 +8,8 @@ services:
     cap_add:
       - NET_ADMIN
     privileged: true
+    ports:
+      - "443:443"
     volumes:
       - ./vpn.key:/vpn.key
     sysctls:
