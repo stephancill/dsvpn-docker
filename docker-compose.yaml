@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  vpn:
+    build: .
+    devices:
+      - "/dev/net/tun:/dev/net/tun"
+    cap_add:
+      - NET_ADMIN
+    privileged: true
+    volumes:
+      - ./vpn.key:/vpn.key
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+    command: ./dsvpn server vpn.key auto
+    restart: always
